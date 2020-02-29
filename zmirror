@@ -1,9 +1,9 @@
 FROM alpine:3.9	
-MAINTAINER FAN VINGA<fanalcest@gmail.com>	
+MAINTAINER Punkmer<admin@dreamback.cc>	
 
  ENV GOAL=google_and_zhwikipedia \	
     FUNC=youtube                \	
-    DOMAIN=vinga.tech	
+    DOMAIN=dreamback.cc	
 
  RUN apk --no-cache add gcc g++ git python3 python3-dev libc-dev                            && \	
     pip3 install --upgrade --no-cache-dir pip                                              && \	
