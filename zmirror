@@ -8,7 +8,7 @@ MAINTAINER Punkmer<admin@dreamback.cc>
  RUN apk --no-cache add gcc g++ git python3 python3-dev libc-dev                            && \	
     pip3 install --upgrade --no-cache-dir pip                                              && \	
     pip3 install --no-cache-dir gunicorn gevent requests flask cchardet fastcache lru-dict && \	
-    git clone https://github.com/aploium/zmirror /app --depth 1                            && \	
+    git clone https://github.com/anserme/zmirror /app --depth 1                            && \	
     apk del --purge gcc g++ git libc-dev && rm -rf /src /app/.git	
 
  WORKDIR /app	
