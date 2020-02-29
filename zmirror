@@ -19,4 +19,4 @@ EXPOSE  80
     sed -i "/my_host_name/d" config.py                    && \	
     echo "my_host_name = '${DOMAIN}'" >> config.py        && \
     echo "verbose_level = 2" >> config.py        && \
-    gunicorn --bind 0.0.0.0:80 --workers 8 --worker-connections 1000 wsgi:application
+    gunicorn --bind 127.0.0.1:8001 --workers 8 --worker-connections 1000 wsgi:application
