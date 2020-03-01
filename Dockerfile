@@ -15,7 +15,7 @@ MAINTAINER Punkmer<admin@dreamback.cc>
  WORKDIR /app	
 EXPOSE  80	
 
- CMD  sed -i 's/要被取代的字串/${DOMAIN}/g'      apache.conf   && \
+ CMD  sed -i 's/lovelucia.zmirrordemo.com/${DOMAIN}/g'      apache.conf   && \
     cp h5.conf  /etc/apache2/conf-enabled                && \
     cp more_configs/config_${GOAL}.py config.py           && \	
     cp more_configs/custom_func_${FUNC}.py custom_func.py && \	
