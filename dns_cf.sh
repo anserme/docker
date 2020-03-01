@@ -15,19 +15,19 @@ dns_gd_add() {
   fulldomain=$1
   txtvalue=$2
 
-  GD_Key="${GD_Key:-$(_readaccountconf_mutable GD_Key)}"
-  GD_Secret="${GD_Secret:-$(_readaccountconf_mutable GD_Secret)}"
-  if [ -z "$GD_Key" ] || [ -z "$GD_Secret" ]; then
-    GD_Key=""
-    GD_Secret=""
+  CF_Key="${CF_Key:-$(_readaccountconf_mutable CF_Key)}"
+  CF_Email="${CF_Email:-$(_readaccountconf_mutable CF_Email)}"
+  if [ -z "$CF_Key" ] || [ -z "$CF_Email" ]; then
+    CF_Key=""
+    CF_Email=""
     _err "You don't specify godaddy api key and secret yet."
     _err "Please create you key and try again."
     return 1
   fi
 
   #save the api key and email to the account conf file.
-  _saveaccountconf_mutable GD_Key "$GD_Key"
-  _saveaccountconf_mutable GD_Secret "$GD_Secret"
+  _saveaccountconf_mutable CF_Key "$CF_Key"
+  _saveaccountconf_mutable CF_Email "$CF_Email"
 
   _debug "First detect the root zone"
   if ! _get_root "$fulldomain"; then
@@ -73,8 +73,8 @@ dns_gd_rm() {
   fulldomain=$1
   txtvalue=$2
 
-  GD_Key="${GD_Key:-$(_readaccountconf_mutable GD_Key)}"
-  GD_Secret="${GD_Secret:-$(_readaccountconf_mutable GD_Secret)}"
+  CF_Key="${CF_Key:-$(_readaccountconf_mutable CF_Key)}"
+  CF_Email="${CF_Email:-$(_readaccountconf_mutable CF_Email)}"
 
   _debug "First detect the root zone"
   if ! _get_root "$fulldomain"; then
@@ -153,7 +153,7 @@ _gd_rest() {
   data="$3"
   _debug "$ep"
 
-  export _H1="Authorization: sso-key $GD_Key:$GD_Secret"
+  export _H1="Authorization: sso-key $CF_Key:$CF_Email"
   export _H2="Content-Type: application/json"
 
   if [ "$data" ]; then
