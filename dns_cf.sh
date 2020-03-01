@@ -11,7 +11,7 @@ GD_Api="https://api.godaddy.com/v1"
 ########  Public functions #####################
 
 #Usage: add  _acme-challenge.www.domain.com   "XKrxpRBosdIKFzxW_CT3KLZNf6q0HG9i01zxXp5CPBs"
-dns_gd_add() {
+dns_cf_add() {
   fulldomain=$1
   txtvalue=$2
 
@@ -69,7 +69,7 @@ dns_gd_add() {
 }
 
 #fulldomain
-dns_gd_rm() {
+dns_cf_rm() {
   fulldomain=$1
   txtvalue=$2
 
