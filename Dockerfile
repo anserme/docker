@@ -13,13 +13,13 @@ MAINTAINER Punkmer<admin@dreamback.cc>
     apk del --purge gcc g++ git libc-dev && rm -rf /src /app/.git	
 
  WORKDIR /app	
-EXPOSE  8001	
+EXPOSE  80	
 
- CMD  echo      >> /etc/apache2/sites-enabled/my-first-mirror-site.conf   && \
+ CMD  sed -i 's/要被取代的字串/${DOMAIN}/g'      apache.conf   && \
     cp h5.conf  /etc/apache2/conf-enabled                && \
     cp more_configs/config_${GOAL}.py config.py           && \	
     cp more_configs/custom_func_${FUNC}.py custom_func.py && \	
     sed -i "/my_host_name/d" config.py                    && \	
     echo "my_host_name = '${DOMAIN}'" >> config.py        && \
     echo "verbose_level = 2" >> config.py                 && \
-    gunicorn --bind 0.0.0.0:8001 --workers 8 --worker-connections 1000 wsgi:application
+    gunicorn --bind 0.0.0.0:80 --workers 8 --worker-connections 1000 wsgi:application
